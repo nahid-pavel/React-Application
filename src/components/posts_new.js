@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { reduxForm } from 'redux-form';
 
@@ -10,7 +10,25 @@ import { PostsIndex } from './posts_index';
 
 class PostsNew extends Component{
 	
+	 static contextTypes= {
+			 
+			 router: PropTypes.object
+			 
+		 }
+		 
+		 onSubmit(props){
+			 
+			 this.props.createPosts(props)
+			 .then(()=>{
+				
+               this.context.router.push("/");				
+				 
+			 });
+		 }
+	
 	 render(){
+		 
+		 
 		 
 		 const { fields: {title,categories,content}, handleSubmit } = this.props;
 		 
@@ -19,7 +37,7 @@ class PostsNew extends Component{
 		  return(
 		  
 		  
-			  <form onSubmit={ handleSubmit(this.props.createPosts) } >
+			  <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) } >
 			  
 					<div className= {`form-group ${ title.touched && title.invalid ? "has-danger" : " "}`}>
 							   
