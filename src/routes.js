@@ -8,6 +8,8 @@ import PostsRoute from './components/posts_index';
 
 import PostsNew from './components/posts_new';
 
+import PostsShow from './components/posts_show';
+
 
 
 
@@ -28,12 +30,9 @@ export default(
   <Route path="/" component={App} >
       
 	 <IndexRoute component = {PostsRoute} />
-     <Route path="greet"    component={Greet} />
-	 <Route path="posts/new" component={PostsNew} />
-	 <Route path="greet1"   component={Greet} />
-	 <Route path="greet2"   component={Greet} />
-	 <Route path="greet3"   component={Greet} />
-	
+     <Route path="posts/new" component={PostsNew} />
+	 <Route path="posts/:id" component={PostsShow} />
+	 
      
   
   </Route>
